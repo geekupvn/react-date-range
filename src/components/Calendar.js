@@ -238,9 +238,14 @@ class Calendar extends PureComponent {
     );
   }
   renderDateDisplay() {
-    const { focusedRange, color, ranges, rangeColors } = this.props;
+    const { renderCustomDateDisplay, focusedRange, color, ranges, rangeColors } = this.props;
     const defaultColor = rangeColors[focusedRange[0]] || color;
     const styles = this.styles;
+
+    if (renderCustomDateDisplay) {
+      return renderCustomDateDisplay;
+    }
+    
     return (
       <div className={styles.dateDisplayWrapper}>
         {ranges.map((range, i) => {
